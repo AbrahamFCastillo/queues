@@ -1,10 +1,9 @@
-/* *****************************************************************************
+/*
  *  Name:              Alan Turing
  *  Coursera User ID:  123456
  *  Last modified:     1/1/2019
- **************************************************************************** */
+ */
 
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
@@ -16,8 +15,8 @@ public class Deque<Item> implements Iterable<Item> {
 
 
     private class Node {
-        private Item item;
-        private Node next;
+        Item item;
+        Node next;
     }
 
     // construct an empty deque
@@ -29,7 +28,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     // is the deque empty?
     public boolean isEmpty() {
-        return first == null;
+        return tam == 0;
     }
 
     // return the number of items on the deque
@@ -43,13 +42,14 @@ public class Deque<Item> implements Iterable<Item> {
             throw new IllegalArgumentException("Es null");
         }
         else {
-            tam++;
             Node oldfirst = first;
             first = new Node();
             first.item = item;
             if (isEmpty())
                 last = first;
-            first.next = oldfirst;
+            else
+                first.next = oldfirst;
+            tam++;
         }
     }
 
@@ -59,7 +59,6 @@ public class Deque<Item> implements Iterable<Item> {
             throw new IllegalArgumentException("Es null");
         }
         else {
-            tam++;
             Node oldlast = last;
             last = new Node();
             last.item = item;
@@ -68,6 +67,7 @@ public class Deque<Item> implements Iterable<Item> {
                 first = last;
             else
                 oldlast.next = last;
+            tam++;
         }
     }
 
@@ -135,14 +135,15 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         Deque<String> cola = new Deque<String>();
 
-        for (int i = 0; i < 6; i++) {
+
+     /*   for (int i = 0; i < 6; i++) {
             String line = StdIn.readString();
         /*    if (i % 2 == 0) {
                 cola.addFirst(line);
             }
             else {
                 cola.addLast(line);
-            } */
+            } ///
             cola.addLast(line);
             StdOut.println(line);
         }
@@ -154,10 +155,25 @@ public class Deque<Item> implements Iterable<Item> {
             String line = StdIn.readString();
             cola.addFirst(line);
             StdOut.println(line);
-        }
+        }      */
 
-        StdOut.println();
-        StdOut.println();
+        String a = "Esta";
+        String b = "es";
+        String c = "una";
+        String d = "prueba";
+        String e = "1. ";
+
+        StdOut.println("Insertando al final: " + b);
+        cola.addLast(b);
+        StdOut.println("Insertando al principio: " + a);
+        cola.addFirst(a);
+
+        StdOut.println("Insertando al final: " + c);
+        cola.addLast(c);
+        StdOut.println("Insertando al final: " + d);
+        cola.addLast(d);
+        StdOut.println("Insertando al principio: " + e);
+        cola.addFirst(e);
 
         for (String s : cola)
             StdOut.println(s);
@@ -167,7 +183,17 @@ public class Deque<Item> implements Iterable<Item> {
 
         StdOut.println(cola.size());
         StdOut.println(cola.removeFirst());
+        StdOut.println("Insertando al principio: " + a);
+        cola.addFirst(a);
         StdOut.println(cola.removeLast());
+        StdOut.println("Insertando al final: " + d);
+        cola.addLast(d);
+
+        StdOut.println();
+
+        for (String s : cola)
+            StdOut.println(s);
+
         StdOut.println(cola.removeFirst());
         StdOut.println(cola.removeLast());
 
